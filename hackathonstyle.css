@@ -1,0 +1,63 @@
+/* Updated hackathonstyle.css - Twilight Neon Theme */
+
+body {
+    margin: 0;
+    font-family: 'Orbitron', sans-serif;
+    background: linear-gradient(180deg, #1e1f2f 0%, #1e1f2f 100%);
+    color: #f0f0f0;
+}
+
+header {
+    width: 100%;
+    background: rgba(30, 31, 47, 0.8);
+    padding: 15px 0;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    font-size: 24px;
+    color: #00f7ff;
+}
+
+/* === NAVBAR STYLES === */
+nav {
+    background-color: #1e1f2f;
+    padding: 15px 40px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.navbar {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar li {
+    margin-right: 30px;
+}
+
+.navbar li:last-child {
+    margin-right: 0;
+}
+
+.navbar a {
+    color: #00f7ff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #ff6ec7;
+}

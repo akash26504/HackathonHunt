@@ -1,0 +1,157 @@
+/* General Reset */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #0f0f1c;
+    color: white;
+  }
+  
+  /* Navbar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #0d0d1a;
+  }
+  
+  .logo {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #00e5ff;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .nav-links li a {
+    text-decoration: none;
+    color: #ddd;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-links li a:hover {
+    color: #00e5ff;
+  }
+  
+  /* Container */
+  .container {
+    padding: 2rem;
+  }
+  
+  /* Hero Section */
+  .hero {
+    text-align: center;
+  }
+  
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+    color: #a0a0b0;
+    margin-bottom: 2rem;
+  }
+  
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .card {
+    background: #1a1a2f;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  }
+  
+  .card h2 {
+    font-size: 2rem;
+    color: #7ca7ff;
+    margin: 0;
+  }
+  
+  .card p {
+    color: #bbb;
+  }
+  
+  /* Filters */
+  .filters {
+    display: flex;
+    justify-content: flex-end;
+    margin: 1.5rem 0;
+  }
+  
+  .filters select {
+    padding: 0.5rem 1rem;
+    margin-left: 1rem;
+    background: #1a1a2f;
+    color: white;
+    border: 1px solid #444;
+    border-radius: 8px;
+  }
+  
+  /* Projects Grid */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+  
+  .project-card {
+    background: #1a1a2f;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+  }
+  
+  .project-card:hover {
+    transform: scale(1.03);
+  }
+  
+  .project-card img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .project-info {
+    padding: 1rem;
+  }
+  
+  .project-info h3 {
+    margin: 0.5rem 0;
+  }
+  
+  .project-info p {
+    color: #aaa;
+    font-size: 0.9rem;
+  }
+  
+  .hackathon-name {
+    display: block;
+    font-weight: bold;
+    color: #88f;
+    margin-top: 0.5rem;
+  }
+  
+  .winner-badge {
+    display: inline-block;
+    margin-top: 0.5rem;
+    background-color: #2b54d3;
+    color: white;
+    padding: 0.2rem 0.6rem;
+    border-radius: 5px;
+    font-size: 0.85rem;
+  }
+  

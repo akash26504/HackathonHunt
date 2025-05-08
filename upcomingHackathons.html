@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Upcoming Hackathons</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- 🌐 NAVIGATION BAR -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <h1 class="logo">Hackathon Hunt</h1>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="upcomingHackathons.html" class="active">Upcoming</a></li>
+        <li><a href="pastHackathons.html">Past</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- 🔽 MAIN CONTENT -->
+  <main style="margin-top: 100px;">
+    <h2 class="section-title">Upcoming Hackathons</h2>
+  
+    <!-- 🔍 Filters Section -->
+    <div class="filter-container">
+      <select id="mode-filter" title="Filter by Mode">
+        <option value="">All Modes</option>
+        <option value="Online">Online</option>
+        <option value="Offline">Offline</option>
+      </select>
+  
+      <label for="cost-filter">Filter by Cost:</label>
+      <select id="cost-filter" title="Filter by Cost">
+        <option value="">All Costs</option>
+        <option value="Free">Free</option>
+        <option value="Paid">Paid</option>
+      </select>
+  
+      <input type="text" id="location-filter" placeholder="Search by location" />
+      <button onclick="applyFilters()">Apply Filters</button>
+    </div>
+  
+    <!-- 🗂 Hackathon Cards -->
+    <div id="hackathon-list" class="hackathon-grid"></div>
+  
+    <!-- ⏮ Pagination -->
+    <div class="pagination">
+      <button id="prev-btn" onclick="changePage(-1)">Previous</button>
+      <button id="next-btn" onclick="changePage(1)">Next</button>
+    </div>
+  </main>
+  
+
+  <!-- 📜 SCRIPT -->
+  <script>
+    const hackathons = [
+      { title: "HACKOWASP 7.0", date: "April 19, 2025", image: "hack8.png", link: "https://hackowasp7.devfolio.co/" },
+      { title: "HackHeaven 2.0", date: "May 3, 2025", image: "hack7.png", link: "https://hackhaven2.devfolio.co/" },
+      { title: "HackHazards 2025", date: "May 10-12, 2025", image: "hack6.png", link: "https://hackhazards25.devfolio.co/" },
+      { title: "HackO'Clock", date: "May 20, 2025", image: "hack5.png", link: "https://hackoclock-1-c58f.devfolio.co/" },
+      { title: "NMIT Hacks", date: "June 1, 2025", image: "hack4.png", link: "https://nmithacks25.devfolio.co/" },
+      { title: "Hello World Hacks", date: "June 15, 2025", image: "hack3.png", link: "https://hello-world-hacks.devfolio.co/" },
+      { title: "TinkerQuest-2025", date: "June 25, 2025", image: "hack2.png", link: "https://tinkerquest-25.devfolio.co/" },
+      { title: "HackSpire 2025", date: "April 11-20, 2025", image: "hack1.png", link: "https://hackspire2025.devfolio.co/" },
+      { title: "HackSpire 1.0", date: "July 5, 2025", image: "996.png", link: "https://hackspire-1.devfolio.co/" },
+      { title: "MAKETHON 7", date: "July 18, 2025", image: "412.png", link: "https://makeathon-7.devfolio.co/" },
+      { title: "Sprinthacks 3.0", date: "July 25, 2025", image: "757.png", link: "https://sprinthacks-3.devfolio.co/" },
+      { title: "HACKATRON 2K25", date: "August 1-3, 2025", image: "245.png", link: "https://hackatron-k.devfolio.co/" },
+      { title: "Super-Nova", date: "August 15, 2025", image: "876.png", link: "https://supernova-hacks.devfolio.co/" },
+      { title: "BrinHack", date: "September 1, 2025", image: "667.png", link: "https://brinhack.devfolio.co/" },
+      { title: "Aventus 3", date: "May 17 2025", image:"863.png", link:"https://aventus-3.devfolio.co/"},
+      { title: "HackWave X25",date:"May 3 2025", image:"471.png",link:"https://hackwave-x.devfolio.co/"},
+      { title: "HackNeeti 1.0",date:"May 14 2025", image:"147.png", link:"https://hackneeti.devfolio.co/"},
+      { title: "Hack The Grid-LUSKO",image:"974.png",link:"https://hack-the-grid-level.devfolio.co/"},
+      { title: "Sui Overflow 2025",date:"May 26 2025",image:"835.png",link:"https://sui-overflow-2025.devfolio.co/"}, 
+      { title: "Base Batch North America",date:"April 25 2025",image:"515.png",link:"https://base-batch-america.devfolio.co/"}
+    ];
+
+    const hackathonList = document.getElementById("hackathon-list");
+    const itemsPerPage = 9;
+    let currentPage = 1;
+
+    function renderHackathons(page) {
+      hackathonList.innerHTML = "";
+      const start = (page - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+      const pageItems = hackathons.slice(start, end);
+
+      pageItems.forEach(h => {
+        const card = document.createElement("div");
+        card.className = "ui-card";
+        card.innerHTML = `
+          <img src="${h.image}" alt="${h.title}">
+          <h3>${h.title}</h3>
+          <p>${h.date}</p>
+          <a href="${h.link}" target="_blank">View Details</a>
+        `;
+        hackathonList.appendChild(card);
+      });
+
+      updatePaginationButtons();
+    }
+
+    function updatePaginationButtons() {
+      document.getElementById("prev-btn").disabled = currentPage === 1;
+      document.getElementById("next-btn").disabled = currentPage === Math.ceil(hackathons.length / itemsPerPage);
+    }
+
+    function changePage(delta) {
+      currentPage += delta;
+      renderHackathons(currentPage);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderHackathons(currentPage);
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hackathon Globe | HackHunt</title>
+  <style>
+    /* Fullscreen globe canvas */
+html, body {
+  margin: 0;
+  overflow: hidden;
+  background-color: #111;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+#globeViz {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+}
+
+/* Button to toggle map view */
+.toggle-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 242, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.toggle-btn:hover {
+  background: rgba(0, 242, 255, 0.2);
+  box-shadow: 0 6px 25px rgba(0, 242, 255, 0.4);
+}
+
+/* Mouse click effect */
+.click-effect {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(0, 242, 255, 0.6);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  animation: click-pop 0.6s ease-out forwards;
+}
+
+@keyframes click-pop {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 0;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div id="globeViz"></div>
+  <button class="toggle-btn" onclick="location.href='map.html'">🗺 Switch to Map View</button>
+
+  <script src="https://unpkg.com/three@0.152.2/build/three.min.js"></script>
+  <script src="https://unpkg.com/globe.gl"></script>
+  <script>
+    const hackathons = [
+      {
+        lat: 28.6139,
+        lng: 77.2090,
+        size: 1,
+        color: 'cyan',
+        name: "Delhi Hack",
+        url: "https://nmithacks25.devfolio.co/"
+      },
+      {
+        lat: 12.9716,
+        lng: 77.5946,
+        size: 1,
+        color: 'lime',
+        name: "Bangalore Build",
+        url: "https://devfolio.co"
+      },
+      {
+        lat: 19.0760,
+        lng: 72.8777,
+        size: 1,
+        color: 'magenta',
+        name: "Mumbai Jam",
+        url: "https://devfolio.co"
+      }
+    ];
+
+    // Arcs from Delhi to other hackathons
+    const arcsData = hackathons.slice(1).map(dest => ({
+      startLat: hackathons[0].lat,
+      startLng: hackathons[0].lng,
+      endLat: dest.lat,
+      endLng: dest.lng,
+      color: ['#00f2ff', '#00f2ff']
+    }));
+
+    const globe = Globe()
+      (document.getElementById('globeViz'))
+      .globeImageUrl('//unpkg.com/three-globe/example/img/earth-dark.jpg')
+      .backgroundColor('#111')
+      .showAtmosphere(true)
+      .atmosphereColor('#00f2ff')
+      .atmosphereAltitude(0.25)
+      .pointsData(hackathons)
+      .pointLat('lat')
+      .pointLng('lng')
+      .pointAltitude('size')
+      .pointColor('color')
+      .onPointClick(d => window.open(d.url, '_blank'))
+      .arcsData(arcsData)
+      .arcStartLat('startLat')
+      .arcStartLng('startLng')
+      .arcEndLat('endLat')
+      .arcEndLng('endLng')
+      .arcColor('color')
+      .arcAltitude(0.2)
+      .arcStroke(0.7)
+      .arcDashLength(0.4)
+      .arcDashGap(1)
+      .arcDashInitialGap(() => Math.random())
+      .arcDashAnimateTime(4000);
+
+    globe.controls().autoRotate = true;
+    globe.controls().autoRotateSpeed = 0.8;
+
+    // Click Effect
+    document.addEventListener('click', (e) => {
+      const effect = document.createElement('div');
+      effect.className = 'click-effect';
+      effect.style.left = `${e.clientX}px`;
+      effect.style.top = `${e.clientY}px`;
+      document.body.appendChild(effect);
+      setTimeout(() => effect.remove(), 600);
+
+      // Sound Effect
+      const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-hard-pop-click-1111.mp3');
+      audio.volume = 0.3;
+      audio.play();
+    });
+  </script>
+</body>
+</html>

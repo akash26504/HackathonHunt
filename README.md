@@ -55,7 +55,6 @@ Thanks to the collaborative spirit and swift coordination, this idea turned into
 |:--:|:--:|
 | ![Screenshot 3](https://github.com/user-attachments/assets/e7dbb40f-9234-464a-ad04-e7672ddec54a) | ![Screenshot 4](https://github.com/user-attachments/assets/2e2cf3f9-27a0-491f-81ab-b801d2703ca3) |
 | ![Screenshot 5](https://github.com/user-attachments/assets/2c6d79a5-6503-41b6-879d-5a1f9b0df724) | ![Screenshot 6](https://github.com/user-attachments/assets/ee6c2549-7e17-4d84-8481-ce7ba015eb24) |
-| ![Screenshot 7](https://github.com/user-attachments/assets/1489b0be-8426-47f0-a4c4-7513a22f32a1) |  |
 
 ---
 

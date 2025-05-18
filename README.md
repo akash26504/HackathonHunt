@@ -60,7 +60,7 @@ Thanks to the collaborative spirit and swift coordination, this idea turned into
 
 ## 🚀 Live Demo
 
-🔗 [https://hack-hunt.netlify.app/](#)
+🔗 [https://hack-hunt.netlify.app/]
 
 ---
 
